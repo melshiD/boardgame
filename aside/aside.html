@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Layout</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            --die-width: 100px;
+            --trans-amount: calc(var(--die-width)/2);
+        }
+
+        body {
+            display: flex;
+            align-items: flex-start;
+            /* justify-content: space-around; */
+            /* perspective: 1000px; */
+            transform-style: preserve-3d;
+        }
+
+        .die {
+            margin: 5em;
+            /* animation: roll 3s ease-in-out forwards; */
+            transform-origin: var(--trans-amount) var(--trans-amount);
+            transform-style: preserve-3d;
+        }
+
+        .red .die-face {
+            background-color: rgb(207, 45, 45);
+            border-color: black;
+        }
+
+        /* .die-face{
+            background-color: aliceblue;
+            width: var(--die-width);
+            height: var(--die-width);
+            border: darkslateblue 2px solid;
+            border-radius: 4px;
+        } */
+        .svg-defs {
+            display: block;
+            height: 0;
+            display: none;
+        }
+
+        svg {
+            width: var(--die-width);
+            height: var(--die-width);
+        }
+
+        [href="#triangle"] {
+            transform: translateY(-5px);
+        }
+
+        [href="#triangle"]+[href*='#dots-'] {
+            transform: scale(0.65) translateX(55px) translateY(70px);
+        }
+
+        .die-face {
+            position: absolute;
+            background-color: rgb(241, 227, 227);
+            border-radius: 3px;
+            width: var(--die-width);
+            height: var(--die-width);
+            border: 1px solid #403737;
+            line-height: 2em;
+            transform-style: preserve-3d;
+        }
+
+        .die-face:hover {
+            transition: background-color 0.5s;
+            background-color: azure;
+        }
+
+        @keyframes roll {
+            to {
+                transform: rotateX(500deg) rotateZ(405deg);
+            }
+        }
+
+        .die-face:nth-child(1) {
+            transform: translateZ(var(--trans-amount));
+        }
+
+        .die-face:nth-child(6) {
+            transform: rotateY(90deg) translateZ(var(--trans-amount));
+        }
+
+        .die-face:nth-child(3) {
+            transform: rotateY(-90deg) translateZ(var(--trans-amount));
+        }
+
+        .die-face:nth-child(4) {
+            transform: rotateX(90deg) translateZ(var(--trans-amount));
+        }
+
+        .die-face:nth-child(5) {
+            transform: rotateX(-90deg) translateZ(var(--trans-amount));
+        }
+
+        .die-face:nth-child(2) {
+            transform: rotateY(-180deg) translateZ(var(--trans-amount));
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="svg-defs">
+        <svg viewBox="0 0 200 200">
+            <defs>
+                <symbol id="circle">
+                    <circle cx="100" cy="100" r="60" stroke-width="6" fill="none" />
+                </symbol>
+                <symbol id="square">
+                    <rect x="45" y="50" rx="4" width="110" height="100" stroke-width="6" fill="none" />
+                </symbol>
+                <symbol id="triangle" transform="scale(0.8)">
+                    <path d="M100 40 L45 155 L155 155 Z" stroke-width="6" fill="none" />
+                </symbol>
+                <symbol id="hexagon">
+                    <path d="M40 100 L70 50 L130 50 L160 100 L130 150 L70 150 Z" stroke-width="6" fill="none" />
+                </symbol>
+                <symbol id="dots-one">
+                    <circle cx="100" cy="100" r="10" />
+                </symbol>
+                <symbol id="dots-two">
+                    <circle cx="120" cy="120" r="10" />
+                    <circle cx="80" cy="80" r="10" />
+                </symbol>
+                <symbol id="dots-three">
+                    <circle cx="105" cy="77" r="10" />
+                    <circle cx="80" cy="104" r="10" />
+                    <circle cx="117" cy="112" r="10" />
+                </symbol>
+                <symbol id="dots-four">
+                    <circle cx="80" cy="80" r="10" />
+                    <circle cx="120" cy="80" r="10" />
+                    <circle cx="80" cy="120" r="10" />
+                    <circle cx="120" cy="120" r="10" />
+                </symbol>
+                <symbol id="dots-five">
+                    <circle cx="100" cy="70" r="10" />
+                    <circle cx="70" cy="95" r="10" />
+                    <circle cx="130" cy="95" r="10" />
+                    <circle cx="115" cy="125" r="10" />
+                    <circle cx="85" cy="125" r="10" />
+                </symbol>
+                <!-- NUMBERING  -->
+                <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Almendra+SC&display=swap');
+
+                    text {
+                        font-family: "Almendra SC";
+                        font-size: 60px;
+                    }
+                </style>
+                <!-- value 1  -->
+                <symbol id="value-1">
+                    <text x="15" y="45">
+                        1
+                    </text>
+                    <text x="185" y="155" rotate="180">
+                        1
+                    </text>
+                </symbol>
+                <!-- value 2  -->
+                <symbol id="value-2">
+                    <text x="15" y="45">
+                        2
+                    </text>
+                    <text x="185" y="155" rotate="180">
+                        2
+                    </text>
+                </symbol>
+                <!-- value 3  -->
+                <symbol id="value-3">
+                    <text x="15" y="45">
+                        3
+                    </text>
+                    <text x="185" y="155" rotate="180">
+                        3
+                    </text>
+                </symbol>
+                <!-- value 5  -->
+                <symbol id="value-5">
+                    <text x="15" y="45">
+                        5
+                    </text>
+                    <text x="185" y="155" rotate="180">
+                        5
+                    </text>
+                </symbol>
+                <!-- value 7  -->
+                <symbol id="value-7">
+                    <text x="15" y="45">
+                        7
+                    </text>
+                    <text x="185" y="155" rotate="180">
+                        7
+                    </text>
+                </symbol>
+                <!-- value 11  -->
+                <symbol id="value-11">
+                    <text x="15" y="45">
+                        1
+                    </text>
+                    <text x="30" y="45">
+                        1
+                    </text>
+                    <text x="185" y="155" rotate="180">
+                        1
+                    </text>
+                    <text x="170" y="155" rotate="180">
+                        1
+                    </text>
+                </symbol>
+                <!-- face declarations  -->
+                <symbol id="face1">
+                    <use href="#hexagon" stroke="red"></use>
+                    <use href="#dots-five"></use>
+                    <use href="#value-7" fill="red"></use>
+                </symbol>
+                <symbol id="face2">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-7"></use>
+                </symbol>
+                <symbol id="face3">
+                    <use href="#square" stroke="black"></use>
+                    <use href="#dots-five"></use>
+                </symbol>
+                <symbol id="face4">
+                    <use href="#circle" stroke="black"></use>
+                    <use href="#dots-five"></use>
+                    <use href="#value-11"></use>
+                </symbol>
+            </defs>
+        </svg>
+    </div>
+    
+    <div class="die">
+        <div class="die-face face-1">
+            <svg viewBox="0 0 200 200">
+                <use href="#face1"></use>
+            </svg>
+        </div>
+        <div class="die-face face-2">
+            <svg viewBox="0 0 200 200">
+                <use href="#face2" />
+            </svg>
+        </div>
+        <div class="die-face face-3">
+            <svg viewBox="0 0 200 200">
+                <use href="#face3" />
+            </svg>
+        </div>
+        <div class="die-face face-4">
+            <svg viewBox="0 0 200 200">
+                <use href="#face4" />
+            </svg>
+        </div>
+        <div class="die-face face-5">
+            <svg viewBox="0 0 200 200">
+                <use href="#face4" />
+            </svg>
+        </div>
+        <div class="die-face face-6">
+            <svg viewBox="0 0 200 200">
+                <use href="#face4" />
+            </svg>
+        </div>
+    </div>
+    <div class="die">
+        <div class="die-face face-1">
+            <svg viewBox="0 0 200 200">
+                <use href="#face1"></use>
+            </svg>
+        </div>
+        <div class="die-face face-2">
+            <svg viewBox="0 0 200 200">
+                <use href="#face2" />
+            </svg>
+        </div>
+        <div class="die-face face-3">
+            <svg viewBox="0 0 200 200">
+                <use href="#face3" />
+            </svg>
+        </div>
+        <div class="die-face face-4">
+            <svg viewBox="0 0 200 200">
+                <use href="#face4" />
+            </svg>
+        </div>
+        <div class="die-face face-5">
+            <svg viewBox="0 0 200 200">
+                <use href="#face4" />
+            </svg>
+        </div>
+        <div class="die-face face-6">
+            <svg viewBox="0 0 200 200">
+                <use href="#face4" />
+            </svg>
+        </div>
+    </div>
+    <div class="die">
+        <div class="die-face face-1">
+            <svg viewBox="0 0 200 200">
+                <use href="#face1"></use>
+            </svg>
+        </div>
+        <div class="die-face face-2">
+            <svg viewBox="0 0 200 200">
+                <use href="#face2" />
+            </svg>
+        </div>
+        <div class="die-face face-3">
+            <svg viewBox="0 0 200 200">
+                <use href="#face3" />
+            </svg>
+        </div>
+        <div class="die-face face-4">
+            <svg viewBox="0 0 200 200">
+                <use href="#face4" />
+            </svg>
+        </div>
+        <div class="die-face face-5">
+            <svg viewBox="0 0 200 200">
+                <use href="#face4" />
+            </svg>
+        </div>
+        <div class="die-face face-6">
+            <svg viewBox="0 0 200 200">
+                <use href="#face4" />
+            </svg>
+        </div>
+    </div>
+    <div class="die">
+        <div class="die-face face-1">
+            <svg viewBox="0 0 200 200">
+                <use href="#face1"></use>
+            </svg>
+        </div>
+        <div class="die-face face-2">
+            <svg viewBox="0 0 200 200">
+                <use href="#face2" />
+            </svg>
+        </div>
+        <div class="die-face face-3">
+            <svg viewBox="0 0 200 200">
+                <use href="#face3" />
+            </svg>
+        </div>
+        <div class="die-face face-4">
+            <svg viewBox="0 0 200 200">
+                <use href="#face4" />
+            </svg>
+        </div>
+        <div class="die-face face-5">
+            <svg viewBox="0 0 200 200">
+                <use href="#face4" />
+            </svg>
+        </div>
+        <div class="die-face face-6">
+            <svg viewBox="0 0 200 200">
+                <use href="#face4" />
+            </svg>
+        </div>
+    </div>
+</body>
+
+</html>
