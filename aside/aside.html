@@ -14,16 +14,18 @@
         }
 
         body {
-            perspective: 1000px;
+            perspective: 1500px;
             transform-style: preserve-3d;
             background-color: darkgray;
         }
-        .dice-container{
+
+        .dice-container {
             display: flex;
             align-items: flex-start;
             flex-wrap: wrap;
             transform-style: inherit;
         }
+
         .die {
             margin: 5em;
             animation: roll 4s ease-in-out forwards;
@@ -117,8 +119,9 @@
 </head>
 
 <body>
+    <script src="./dice_bag.js"></script>
     <div class="svg-defs">
-        <svg>
+        <svg xmlns="http://www.w3.org/2000/svg">
             <defs id="defs">
                 <symbol id="circle">
                     <circle cx="100" cy="100" r="60" stroke-width="6" fill="none" />
@@ -249,6 +252,10 @@
             </defs>
         </svg>
     </div>
+    <!-- generate face symbols  -->
+    <script src="make_the_bag.js"></script>
+    <!-- end svg-symbol generating script  -->
+    <!-- begin rendering  -->
     <div class="dice-container">
         <div class="die red">
             <div class="die-face face-1">
@@ -283,12 +290,8 @@
             </div>
         </div>
     </div>
-        
-        <script src="./dice_bag.js"></script>
-        <script src="make_the_bag.js"></script>
-
-
-    </div>
+    <button onclick="renderDice(faceSymbolsByDie)"></button>
+    <script src="./render_dice.js"></script>
 </body>
 
 </html>

@@ -2,10 +2,7 @@
 // white", "black", "one", "circle", "5" 
 
 let svgNS = "http://www.w3.org/2000/svg";
-
-//grab dice container to append to later
-let diceContainer = document.querySelector('.dice-container');
-console.log(diceContainer);
+let faceSymbolsByDie = [];
 
 //grab svg defs tag to append face symbols to
 let svgDefsTag = document.getElementById('defs');
@@ -20,56 +17,36 @@ dice_bag_simple.forEach((die, dieIndex) => {
     thisDieDiv.setAttribute('class', 'die');
     thisDieDiv.setAttribute('id', `die_${dieIndex}`);
 
+    //make an array organized with symbol id's for each face, along with the die's color 
+    let theseSixFaces = [die[0][0]];
     die.forEach((face, faceIndex) => {
-        let svgFaceSymbol = document.createElementNS(svgNS, 'symbol');
+        let svgFaceSymbol = document.createElementNS("http://www.w3.org/2000/svg", 'symbol');
         let faceSymbolID = `die${dieIndex}_face${faceIndex}`;
-        svgFaceSymbol.setAttributeNS(svgNS, 'id', faceSymbolID);
+        svgFaceSymbol.setAttributeNS("http://www.w3.org/2000/svg", 'id', faceSymbolID);
+
+        theseSixFaces.push(faceSymbolID);
 
         //check properties of each face and include required <use> tags in symbol
         //only the shape need be black/red, dots are always black here
         if(face[3] != 'none'){
-            let shapeUseTag = document.createElementNS(svgNS, 'use');
-            shapeUseTag.setAttributeNS(svgNS, 'href', `#${face[3]}`);
-            shapeUseTag.setAttributeNS(svgNS, 'stroke', `${face[1]}`)
+            let shapeUseTag = document.createElementNS("http://www.w3.org/2000/svg", 'use');
+            shapeUseTag.setAttributeNS("http://www.w3.org/2000/svg", 'href', `#${face[3]}`);
+            shapeUseTag.setAttributeNS("http://www.w3.org/2000/svg", 'stroke', `${face[1]}`)
             svgFaceSymbol.appendChild(shapeUseTag);
         }
         if(face[2] != 'none'){
-            let dotsUseTag = document.createElementNS(svgNS, 'use');
-            dotsUseTag.setAttributeNS(svgNS, 'href', `#dots-${face[2]}`);
+            let dotsUseTag = document.createElementNS("http://www.w3.org/2000/svg", 'use');
+            dotsUseTag.setAttributeNS("http://www.w3.org/2000/svg", 'href', `#dots-${face[2]}`);
             svgFaceSymbol.appendChild(dotsUseTag);
         }
         if(face[4] != ''){
-            let valueUseTag = document.createElementNS(svgNS, 'use');
-            valueUseTag.setAttributeNS(svgNS, 'href', `value-${face[4]}`);
+            let valueUseTag = document.createElementNS("http://www.w3.org/2000/svg", 'use');
+            valueUseTag.setAttributeNS("http://www.w3.org/2000/svg", 'href', `#value-${face[4]}`);
             svgFaceSymbol.appendChild(valueUseTag);
         }
         svgDefsTag.appendChild(svgFaceSymbol);
-        thisDieDiv.appendChild(useFaceAndAppendToDieDiv(faceSymbolID, faceIndex));
-        // console.log(thisDieDiv);
+        // useFaceAndAppendToDieDiv(faceSymbolID, faceIndex, thisDieDiv);
+        // thisDieDiv.appendChild(usableFaceDiv);
     });
-    console.log(thisDieDiv);
-    diceContainer.appendChild(thisDieDiv);
+    faceSymbolsByDie.push(theseSixFaces);
 });
-
-
-function useFaceAndAppendToDieDiv(faceSymbolID, faceIndex){
-    //make die face div
-    let faceDiv = document.createElement('div');
-    faceDiv.setAttribute('class', `die-face face-${faceIndex}`);
-
-    //make svg tag
-    let svgTag = document.createElementNS(svgNS, 'svg');
-    svgTag.setAttributeNS(svgNS, 'viewBox', '0 0 200 200');
-
-    //make use tag and set href to faceSymbolID
-    let useTag = document.createElementNS(svgNS, 'use');
-    useTag.setAttributeNS(svgNS, 'href', `#${faceSymbolID}`);
-
-    //make appropriate appendations (real word?)
-    svgTag.appendChild(useTag);
-    faceDiv.appendChild(svgTag);
-    return faceDiv;
-
-}
-//now all the face symbol definitions have been built, so build the die 
-//and append them to the container
