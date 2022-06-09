@@ -14,14 +14,16 @@
         }
 
         body {
-            display: flex;
-            align-items: flex-start;
-            /* justify-content: space-around; */
-            /* perspective: 1000px; */
+            perspective: 1000px;
             transform-style: preserve-3d;
             background-color: darkgray;
         }
-
+        .dice-container{
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            transform-style: inherit;
+        }
         .die {
             margin: 5em;
             animation: roll 4s ease-in-out forwards;
@@ -117,7 +119,7 @@
 <body>
     <div class="svg-defs">
         <svg>
-            <defs>
+            <defs id="defs">
                 <symbol id="circle">
                     <circle cx="100" cy="100" r="60" stroke-width="6" fill="none" />
                 </symbol>
@@ -239,7 +241,7 @@
                     <use href="#square" stroke="black"></use>
                     <use href="#dots-five"></use>
                 </symbol>
-                <symbol id="face4">
+                <symbol id="face4" fill="red">
                     <use href="#circle" stroke="black"></use>
                     <use href="#dots-five"></use>
                     <use href="#value-11"></use>
@@ -247,42 +249,7 @@
             </defs>
         </svg>
     </div>
-
-    <script src="./dice_bag.js"></script>
-    <script src="make_the_bag.js"></script>
-    <div class="dice-container"></div>
-        <div class="die">
-            <div class="die-face face-1">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face1"></use>
-                </svg>
-            </div>
-            <div class="die-face face-2">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face2" />
-                </svg>
-            </div>
-            <div class="die-face face-3">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face3" />
-                </svg>
-            </div>
-            <div class="die-face face-4">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face4" />
-                </svg>
-            </div>
-            <div class="die-face face-5">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face4" />
-                </svg>
-            </div>
-            <div class="die-face face-6">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face4" />
-                </svg>
-            </div>
-        </div>
+    <div class="dice-container">
         <div class="die red">
             <div class="die-face face-1">
                 <svg viewBox="0 0 200 200">
@@ -315,70 +282,12 @@
                 </svg>
             </div>
         </div>
-        <div class="die">
-            <div class="die-face face-1">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face1"></use>
-                </svg>
-            </div>
-            <div class="die-face face-2">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face2" />
-                </svg>
-            </div>
-            <div class="die-face face-3">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face3" />
-                </svg>
-            </div>
-            <div class="die-face face-4">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face4" />
-                </svg>
-            </div>
-            <div class="die-face face-5">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face4" />
-                </svg>
-            </div>
-            <div class="die-face face-6">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face4" />
-                </svg>
-            </div>
-        </div>
-        <div class="die">
-            <div class="die-face face-1">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face1"></use>
-                </svg>
-            </div>
-            <div class="die-face face-2">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face2" />
-                </svg>
-            </div>
-            <div class="die-face face-3">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face3" />
-                </svg>
-            </div>
-            <div class="die-face face-4">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face4" />
-                </svg>
-            </div>
-            <div class="die-face face-5">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face4" />
-                </svg>
-            </div>
-            <div class="die-face face-6">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face4" />
-                </svg>
-            </div>
-        </div>
+    </div>
+        
+        <script src="./dice_bag.js"></script>
+        <script src="make_the_bag.js"></script>
+
+
     </div>
 </body>
 
