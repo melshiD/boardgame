@@ -25,7 +25,7 @@ const dice_bag_simple = [
         ["white", "black", "three", "square", "5"],
         ["white", "black", "three", "triangle", "2"],
         ["white", "black", "two", "triangle", "1"]
-    ]
+    ],
     [   //3
         ["white", "black", "four", "square", "5"],
         ["white", "black", "three", "hexagon", "7"],
