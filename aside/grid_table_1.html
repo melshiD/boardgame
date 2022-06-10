@@ -18,22 +18,31 @@
             transform-style: preserve-3d;
             background-color: darkgray;
             width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            justify-content: start;
         }
 
         .dice-container {
             transform: rotateX(45deg);
-            margin: 3em auto;
+            /* margin: auto; */
             display: flex;
             align-items: flex-start;
             flex-wrap: wrap;
             transform-style: inherit;
             width: 50vw;
+            height: 50vh;
+            border: black solid 2px;
+            background-color: rgba(64, 46, 46, 0.5);
+            /* transform: translateY(var(--trans-amount)); */
+
         }
 
         .die {
             /* flex-basis: ; */
             margin: 5em;
-            /* animation: roll 4s ease-in-out forwards; */
+            animation: roll 4s ease-in-out forwards;
+            /*  */
             transform-origin: var(--trans-amount) var(--trans-amount);
             transform-style: preserve-3d;
         }
@@ -46,6 +55,7 @@
         .svg-defs {
             display: block;
             height: 0;
+            width: 0;
             display: none;
         }
 
@@ -865,38 +875,6 @@
         </svg>
     </div>
     <div class="dice-container" draggable="true">
-        <div class="die red">
-            <div class="die-face face-1">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face1"></use>
-                </svg>
-            </div>
-            <div class="die-face face-2">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face2"></use>
-                </svg>
-            </div>
-            <div class="die-face face-3">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face3"></use>
-                </svg>
-            </div>
-            <div class="die-face face-4">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face4"></use>
-                </svg>
-            </div>
-            <div class="die-face face-5">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face4"></use>
-                </svg>
-            </div>
-            <div class="die-face face-6">
-                <svg viewBox="0 0 200 200">
-                    <use href="#face4"></use>
-                </svg>
-            </div>
-        </div>
         <div class="die">
             <div class="die-face face-0"><svg viewBox="0 0 200 200">
                     <use href="#die0_face0"></use>
@@ -1017,6 +995,8 @@
                     <use href="#die5_face5"></use>
                 </svg></div>
         </div>
+        </div>
+        <div class="dice-container" draggable="true">
         <div class="die">
             <div class="die-face face-0"><svg viewBox="0 0 200 200">
                     <use href="#die6_face0"></use>
@@ -1137,6 +1117,8 @@
                     <use href="#die11_face5"></use>
                 </svg></div>
         </div>
+        </div>
+        <div class="dice-container" draggable="true">
         <div class="die">
             <div class="die-face face-0"><svg viewBox="0 0 200 200">
                     <use href="#die12_face0"></use>
@@ -1257,6 +1239,8 @@
                     <use href="#die17_face5"></use>
                 </svg></div>
         </div>
+        </div>
+        <div class="dice-container" draggable="true">
         <div class="die">
             <div class="die-face face-0"><svg viewBox="0 0 200 200">
                     <use href="#die18_face0"></use>
@@ -1358,6 +1342,7 @@
                 </svg></div>
         </div>
     </div>
+
     <script>
         window.addEventListener('mousedown', trackPositionForTilt);
         function trackPositionForTilt(e){

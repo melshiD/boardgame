@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>testing copied element svg</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            --die-width: 100px;
+            --trans-amount: calc(var(--die-width)/2);
+        }
+
+        body {
+            perspective: 2000px;
+            transform-style: preserve-3d;
+            background-color: darkgray;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            justify-content: start;
+        }
+
+        .dice-container {
+            transform: rotateX(45deg);
+            /* margin: auto; */
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            transform-style: inherit;
+            width: 50vw;
+            height: 50vh;
+            border: black solid 2px;
+            background-color: rgba(64, 46, 46, 0.5);
+            /* transform: translateY(var(--trans-amount)); */
+
+        }
+
+        .die {
+            /* flex-basis: ; */
+            margin: 5em;
+            animation: roll 4s ease-in-out forwards;
+            /*  */
+            transform-origin: var(--trans-amount) var(--trans-amount);
+            transform-style: preserve-3d;
+        }
+
+        .red .die-face {
+            background-color: rgb(207, 45, 45);
+            border-color: black;
+        }
+
+        .svg-defs {
+            display: block;
+            height: 0;
+            width: 0;
+            display: none;
+        }
+
+        svg {
+            width: var(--die-width);
+            height: var(--die-width);
+        }
+
+        [href="#triangle"] {
+            transform: translateY(-5px);
+        }
+
+        [href="#triangle"]+[href*='#dots-'] {
+            transform: scale(0.65) translateX(55px) translateY(70px);
+        }
+
+        .die-face {
+            position: absolute;
+            background-color: rgb(241, 227, 227);
+            border-radius: 3px;
+            width: var(--die-width);
+            height: var(--die-width);
+            border: 1px solid #403737;
+            line-height: 2em;
+            transform-style: preserve-3d;
+            user-select: none;
+        }
+
+        .die-face:hover {
+            cursor: default;
+            transition: background-color 0.5s;
+            background-color: azure;
+        }
+
+        @keyframes roll {
+            20% {
+                transform: rotateX(500deg) rotateZ(0);
+                margin: 5em;
+            }
+
+            30% {
+                transform: rotateX(500deg) rotateZ(0);
+                margin: 5em;
+            }
+
+            50% {
+                transform: rotateX(500deg) rotateZ(405deg);
+                margin: 5em;
+            }
+
+            90% {
+                transform: rotateX(500deg) rotateZ(720deg) rotateY(360deg);
+                margin: 5em;
+            }
+            100%{
+                transform: rotateX(720deg) rotateZ(720deg) rotateY(360deg);
+                margin: 4.5em;
+            }
+        }
+
+        .die-face:nth-child(1) {
+            transform: translateZ(var(--trans-amount));
+        }
+
+        .die-face:nth-child(6) {
+            transform: rotateY(90deg) translateZ(var(--trans-amount));
+        }
+
+        .die-face:nth-child(3) {
+            transform: rotateY(-90deg) translateZ(var(--trans-amount));
+        }
+
+        .die-face:nth-child(4) {
+            transform: rotateX(90deg) translateZ(var(--trans-amount));
+        }
+
+        .die-face:nth-child(5) {
+            transform: rotateX(-90deg) translateZ(var(--trans-amount));
+        }
+
+        .die-face:nth-child(2) {
+            transform: rotateY(-180deg) translateZ(var(--trans-amount));
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dice-container" draggable="true">
+        <div class="die">
+            <div class="die-face face-0"><svg viewBox="0 0 200 200">
+                    <use href="./die_face_defs.svg#die0_face0"></use>
+                </svg></div>
+            <div class="die-face face-1"><svg viewBox="0 0 200 200">
+                    <use href="#die0_face1"></use>
+                </svg></div>
+            <div class="die-face face-2"><svg viewBox="0 0 200 200">
+                    <use href="#die0_face2"></use>
+                </svg></div>
+            <div class="die-face face-3"><svg viewBox="0 0 200 200">
+                    <use href="#die0_face3"></use>
+                </svg></div>
+            <div class="die-face face-4"><svg viewBox="0 0 200 200">
+                    <use href="#die0_face4"></use>
+                </svg></div>
+            <div class="die-face face-5"><svg viewBox="0 0 200 200">
+                    <use href="#die0_face5"></use>
+                </svg></div>
+        </div>
+
+        </div>
+        </div>
+        <div class="dice-container" draggable="true">
+        <div class="die">
+            <div class="die-face face-0"><svg viewBox="0 0 200 200">
+                    <use href="#die6_face0"></use>
+                </svg></div>
+            <div class="die-face face-1"><svg viewBox="0 0 200 200">
+                    <use href="#die6_face1"></use>
+                </svg></div>
+            <div class="die-face face-2"><svg viewBox="0 0 200 200">
+                    <use href="#die6_face2"></use>
+                </svg></div>
+            <div class="die-face face-3"><svg viewBox="0 0 200 200">
+                    <use href="#die6_face3"></use>
+                </svg></div>
+            <div class="die-face face-4"><svg viewBox="0 0 200 200">
+                    <use href="#die6_face4"></use>
+                </svg></div>
+            <div class="die-face face-5"><svg viewBox="0 0 200 200">
+                    <use href="#die6_face5"></use>
+                </svg></div>
+        </div>
+        </div>
+        </div>
+        <div class="dice-container" draggable="true">
+        <div class="die">
+            <div class="die-face face-0"><svg viewBox="0 0 200 200">
+                    <use href="#die12_face0"></use>
+                </svg></div>
+            <div class="die-face face-1"><svg viewBox="0 0 200 200">
+                    <use href="#die12_face1"></use>
+                </svg></div>
+            <div class="die-face face-2"><svg viewBox="0 0 200 200">
+                    <use href="#die12_face2"></use>
+                </svg></div>
+            <div class="die-face face-3"><svg viewBox="0 0 200 200">
+                    <use href="#die12_face3"></use>
+                </svg></div>
+            <div class="die-face face-4"><svg viewBox="0 0 200 200">
+                    <use href="#die12_face4"></use>
+                </svg></div>
+            <div class="die-face face-5"><svg viewBox="0 0 200 200">
+                    <use href="#die12_face5"></use>
+                </svg></div>
+        </div>
+
+        </div>
+        </div>
+        <div class="dice-container" draggable="true">
+        <div class="die">
+            <div class="die-face face-0"><svg viewBox="0 0 200 200">
+                    <use href="#die18_face0"></use>
+                </svg></div>
+            <div class="die-face face-1"><svg viewBox="0 0 200 200">
+                    <use href="#die18_face1"></use>
+                </svg></div>
+            <div class="die-face face-2"><svg viewBox="0 0 200 200">
+                    <use href="#die18_face2"></use>
+                </svg></div>
+            <div class="die-face face-3"><svg viewBox="0 0 200 200">
+                    <use href="#die18_face3"></use>
+                </svg></div>
+            <div class="die-face face-4"><svg viewBox="0 0 200 200">
+                    <use href="#die18_face4"></use>
+                </svg></div>
+            <div class="die-face face-5"><svg viewBox="0 0 200 200">
+                    <use href="#die18_face5"></use>
+                </svg></div>
+        </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('mousedown', trackPositionForTilt);
+        function trackPositionForTilt(e){
+            window.addEventListener('mousemove', (e) => {
+                console.log(e.screenY)
+            });
+            window.addEventListener('mouseup', ()=>{
+                window.removeEventListener('mousedown');
+            })
+        }
+
+        //WHEN YOU SIT BACK DOWN, READ THE ARTICLE AND BUILD THE DRAG-TO-TILT FUNCTIONALITY
+    </script>
+</body>
+
+</html>
